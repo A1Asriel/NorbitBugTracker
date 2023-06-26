@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "src", "src\src.csproj", "{C8533060-6FEA-4944-B282-7FFD8EB33E22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorbitBugTracker", "src\NorbitBugTracker.csproj", "{C8533060-6FEA-4944-B282-7FFD8EB33E22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

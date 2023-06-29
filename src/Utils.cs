@@ -25,6 +25,6 @@ public static class IDManager
 
     public static long IDtoTime(long id)
     {
-        return (id >> 22) / 1000;
+        return ((id >> 22) + NBTEpoch) / 1000;
     }
 }

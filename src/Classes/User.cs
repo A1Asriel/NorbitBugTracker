@@ -1,30 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using NorbitBugTracker.Utils;
 
 namespace NorbitBugTracker.Classes;
 
 public class User
 {
     [Key]
-    public required long Id
-    {
-        get; set;
-    }
+    public long Id { get; set; }
     [Required]
-    public required string Login
-    {
-        get; set;
-    }
+    public required string Login { get; set; }
     [Required]
-    public required string Password
-    {
-        get; set;
-    }
+    public required string Password { get; set; }
     [Required]
-    public required string Name
-    {
-        get; set;
-    }
-    public Enums.AccessLevel AccessLevel = Enums.AccessLevel.User;
-    public List<Report> Reports { get; set; } = new List<Report>();
-    public List<Comment> Comments { get; set; } = new List<Comment>();
+    public required string Name { get; set; }
+    public long Time { get => IDManager.IDtoTime(Id); }
+    public Enums.AccessLevel AccessLevel { get; set; } = Enums.AccessLevel.User;
+    public List<long>? ReportIDs { get; set; }
+    public List<long>? CommentIDs { get; set; }
 }

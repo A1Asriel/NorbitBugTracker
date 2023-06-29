@@ -10,16 +10,16 @@ public static class ProjectRouter
     public static WebApplication AddProjectRouter(this WebApplication application)
     {
         RouteGroupBuilder projectGroup = application.MapGroup("/api/projects");
-        projectGroup.MapGet("/", GetProjects);
+        projectGroup.MapGet("/", GetAllProjectIDs);
         projectGroup.MapGet("/{id:long}", GetProject);
-        projectGroup.MapGet("/{projectId:long}/reports", GetReports);
+        projectGroup.MapGet("/{projectId:long}/reports", GetReportIDs);
         projectGroup.MapPost("/create", CreateProject);
         projectGroup.MapGet("/{id:long}/delete", RemoveProject);
         projectGroup.MapPut("/{id:long}/edit", EditProject);
         return application;
     }
 
-    private static IResult GetProjects()
+    private static IResult GetAllProjectIDs()
     {
         return Results.StatusCode(501);  // Not implemented
     }
@@ -29,7 +29,7 @@ public static class ProjectRouter
         return Results.StatusCode(501);  // Not implemented
     }
 
-    private static IResult GetReports(long projectId)
+    private static IResult GetReportIDs(long projectId)
     {
         return Results.StatusCode(501);  // Not implemented
     }

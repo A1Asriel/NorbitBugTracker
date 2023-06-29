@@ -5,18 +5,9 @@ namespace NorbitBugTracker.Classes;
 public class Comment
 {
     [Key]
-    public required long Id
-    {
-        get; set;
-    }
+    public long Id { get; set; }
     [Required]
-    public required User User
-    {
-        get; set;
-    }
+    public required long UserID { get; set; }
     [Required]
-    public required string Content
-    {
-        get; set;
-    }
+    public required string Content { get; set; }
 }

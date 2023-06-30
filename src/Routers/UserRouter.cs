@@ -6,7 +6,7 @@ using NorbitBugTracker.Utils;
 namespace NorbitBugTracker.Routers;
 
 /// <summary>
-/// Summary description for Class1
+/// Роутер для работы API пользователей
 /// </summary>
 public static class UserRouter
 {

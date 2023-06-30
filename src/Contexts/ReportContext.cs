@@ -12,7 +12,7 @@ public sealed class ReportContext: DbContext
         optionsBuilder.UseNpgsql("Host=localhost;Port=1236;Database=nbt_report_db;Username=postgres;Password=12345678");
     }
 
-    public ReportContext(DbContextOptions options) : base(options)
+    public ReportContext()
     {
         Database.Migrate();
     }

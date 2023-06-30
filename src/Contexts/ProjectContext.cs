@@ -12,7 +12,7 @@ public sealed class ProjectContext: DbContext
         optionsBuilder.UseNpgsql("Host=localhost;Port=1235;Database=nbt_project_db;Username=postgres;Password=12345678");
     }
 
-    public ProjectContext(DbContextOptions options) : base(options)
+    public ProjectContext()
     {
         Database.Migrate();
     }

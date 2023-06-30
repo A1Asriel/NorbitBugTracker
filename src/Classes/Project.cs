@@ -24,13 +24,7 @@ public class Project
     {
         get; set;
     }
-    public List<long>? ProjectIDs
-    {
-        get; set;
-    }
-    public List<string>? Categories
-    {
-        get; set;
-    }
+    public List<long> ProjectIDs { get; set; } = new List<long>();
+    public List<string> Categories { get; set; } = new List<string>();
     // public File Image
 }

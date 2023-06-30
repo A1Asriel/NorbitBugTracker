@@ -9,10 +9,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace NorbitBugTracker.Migrations.Report
+namespace NorbitBugTracker.Migrations.Project
 {
-    [DbContext(typeof(ReportContext))]
-    [Migration("20230629222230_Initial")]
+    [DbContext(typeof(ProjectContext))]
+    [Migration("20230630004154_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace NorbitBugTracker.Migrations.Report
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("NorbitBugTracker.Classes.Report", b =>
+            modelBuilder.Entity("NorbitBugTracker.Classes.Project", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,41 +33,28 @@ namespace NorbitBugTracker.Migrations.Report
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("Category")
-                        .HasColumnType("text");
-
-                    b.Property<List<long>>("CommentIDs")
-                        .HasColumnType("bigint[]");
+                    b.Property<List<string>>("Categories")
+                        .IsRequired()
+                        .HasColumnType("text[]");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<List<long>>("LinkedReportIDs")
-                        .HasColumnType("bigint[]");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Priority")
+                    b.Property<List<long>>("ProjectIDs")
+                        .IsRequired()
+                        .HasColumnType("bigint[]");
+
+                    b.Property<int>("Visibility")
                         .HasColumnType("integer");
-
-                    b.Property<long>("ProjectId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Reports");
+                    b.ToTable("Projects");
                 });
 #pragma warning restore 612, 618
         }

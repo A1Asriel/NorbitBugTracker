@@ -15,6 +15,6 @@ public class User
     public required string Name { get; set; }
     public long Time { get => IDManager.IDtoTime(Id); }
     public Enums.AccessLevel AccessLevel { get; set; } = Enums.AccessLevel.User;
-    public List<long>? ReportIDs { get; set; }
-    public List<long>? CommentIDs { get; set; }
+    public List<long> ReportIDs { get; set; } = new List<long>();
+    public List<Comment> Comments { get; set; } = new List<Comment>();
 }

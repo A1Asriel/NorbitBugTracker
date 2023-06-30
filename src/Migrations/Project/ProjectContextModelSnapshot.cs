@@ -31,6 +31,7 @@ namespace NorbitBugTracker.Migrations.Project
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<List<string>>("Categories")
+                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.Property<string>("Description")
@@ -42,6 +43,7 @@ namespace NorbitBugTracker.Migrations.Project
                         .HasColumnType("text");
 
                     b.Property<List<long>>("ProjectIDs")
+                        .IsRequired()
                         .HasColumnType("bigint[]");
 
                     b.Property<int>("Visibility")

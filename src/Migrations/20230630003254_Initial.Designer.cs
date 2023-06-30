@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NorbitBugTracker.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20230629232511_Initial")]
+    [Migration("20230630003254_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -25,6 +25,28 @@ namespace NorbitBugTracker.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("NorbitBugTracker.Classes.Comment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("UserID")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Comment");
+                });
+
             modelBuilder.Entity("NorbitBugTracker.Classes.User", b =>
                 {
                     b.Property<long>("Id")
@@ -35,9 +57,6 @@ namespace NorbitBugTracker.Migrations
 
                     b.Property<int>("AccessLevel")
                         .HasColumnType("integer");
-
-                    b.Property<List<long>>("CommentIDs")
-                        .HasColumnType("bigint[]");
 
                     b.Property<string>("Login")
                         .IsRequired()
@@ -52,11 +71,26 @@ namespace NorbitBugTracker.Migrations
                         .HasColumnType("text");
 
                     b.Property<List<long>>("ReportIDs")
+                        .IsRequired()
                         .HasColumnType("bigint[]");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("NorbitBugTracker.Classes.Comment", b =>
+                {
+                    b.HasOne("NorbitBugTracker.Classes.User", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("NorbitBugTracker.Classes.User", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

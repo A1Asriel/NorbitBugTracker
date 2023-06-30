@@ -41,13 +41,7 @@ public class Report
     public Enums.ReportPriority Priority { get; set; } = Enums.ReportPriority.Unassigned;
     public Enums.ReportStatus Status { get; set; } = Enums.ReportStatus.Open;
     // public List<File> Files { get; set; } = new List<File>();
-    public List<long>? LinkedReportIDs
-    {
-        get; set;
-    }
+    public List<long> LinkedReportIDs { get; set; } = new List<long>();
     // public List<Tags>
-    public List<long>? CommentIDs
-    {
-        get; set;
-    }
+    public List<Comment> Comments { get; set; } = new List<Comment>();
 }

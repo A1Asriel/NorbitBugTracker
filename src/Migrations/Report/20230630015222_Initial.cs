@@ -32,39 +32,11 @@ namespace NorbitBugTracker.Migrations.Report
                 {
                     table.PrimaryKey("PK_Reports", x => x.Id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Comment",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserID = table.Column<long>(type: "bigint", nullable: false),
-                    Content = table.Column<string>(type: "text", nullable: false),
-                    ReportId = table.Column<long>(type: "bigint", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comment", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Comment_Reports_ReportId",
-                        column: x => x.ReportId,
-                        principalTable: "Reports",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comment_ReportId",
-                table: "Comment",
-                column: "ReportId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Comment");
-
             migrationBuilder.DropTable(
                 name: "Reports");
         }

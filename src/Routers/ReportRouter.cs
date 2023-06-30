@@ -17,7 +17,6 @@ public static class ReportRouter
         reportGroup.MapGet("/{id:long}", GetReport);
         reportGroup.MapPost("/create", CreateReport);
         reportGroup.MapPut("/{id:long}/edit", EditReport);
-        reportGroup.MapPost("/{reportId:long}/comment", CreateComment);
         reportGroup.MapPost("/{reportId1:long}/link", LinkReport);
         reportGroup.MapPost("/{reportId1:long}/unlink", UnlinkReport);
         return application;
@@ -99,34 +98,6 @@ public static class ReportRouter
         reports.Update(report);
         context.SaveChanges();
         return Results.Ok(report);
-    }
-
-    private static IResult CreateComment(long reportId, long userId, string content)
-    {
-        return Results.StatusCode(501); // Не работает
-        ReportContext reportContext = new();
-        DbSet<Report> reports = reportContext.Reports;
-        UserContext userContext = new();
-        DbSet<User> users = userContext.Users;
-        Report? report = reports.FirstOrDefault(x => x.Id == reportId);
-        User? user = users.FirstOrDefault(x => x.Id == userId);
-        if (report == null)
-            return Results.NotFound();
-        if (user == null || user.AccessLevel <= 0)
-            return Results.StatusCode(403);
-        Comment comment = new()
-        {
-            Id = IDManager.GetID(),
-            Content = content,
-            UserID = userId
-        };
-        report.Comments.Add(comment);
-        user.Comments.Add(comment);
-        reports.Update(report);
-        users.Update(user);
-        reportContext.SaveChanges();
-        userContext.SaveChanges();
-        return Results.Ok(comment);
     }
 
     private static IResult LinkReport(long reportId1, long reportId2)

@@ -50,7 +50,7 @@ public static class UserRouter
         DbSet<User> users = context.Users;
         User? check_user = users.FirstOrDefault(x => x.Login == login);
         if (check_user != null)
-            return Results.Forbid();
+            return Results.StatusCode(403);
 
         User user = new User()
         {
